@@ -1,0 +1,371 @@
+:root {
+  --paper: #f2f3ed;
+  --surface: #ffffff;
+  --surface-2: #e9ebe0;
+  --ink: #1d2a22;
+  --ink-soft: #54645b;
+  --ink-faint: #7c8b81;
+  --line: #dbdcce;
+  --line-strong: #c7c9b8;
+  --accent-hard: #2e6b4c;
+  --accent-hard-bg: #e3eee7;
+  --accent-hard-ink: #1f4a35;
+  --accent-soft: #a9762e;
+  --accent-soft-bg: #f3e8d4;
+  --danger: #a33d3d;
+  --danger-bg: #f6e3e1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "IBM Plex Serif", ui-serif, Georgia, serif;
+  font-weight: 600;
+  margin: 0;
+}
+
+code,
+.mono {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+select {
+  font-family: inherit;
+  font-size: 0.92rem;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.6rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.app-header nav {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.app-header .brand {
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.nav-link {
+  padding: 0.4rem 0.8rem;
+  border-radius: 3px;
+  text-decoration: none;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  background: var(--accent-hard-bg);
+  color: var(--accent-hard-ink);
+}
+
+.app-main {
+  flex: 1;
+  padding: 2rem 1.6rem 3rem;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.role-badge {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  background: var(--surface-2);
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.btn {
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0.45rem 0.9rem;
+  border-radius: 3px;
+  font-size: 0.88rem;
+}
+
+.btn:hover {
+  border-color: var(--accent-hard);
+}
+
+.btn-primary {
+  background: var(--accent-hard);
+  border-color: var(--accent-hard);
+  color: white;
+}
+
+.btn-primary:hover {
+  opacity: 0.92;
+}
+
+.btn-danger {
+  color: var(--danger);
+  border-color: var(--danger);
+  background: var(--surface);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  padding: 1.3rem 1.4rem;
+  box-shadow: 0 1px 2px rgba(29, 42, 34, 0.06);
+}
+
+.error-banner {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: 3px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.88rem;
+  margin-bottom: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.field label {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.field input,
+.field select {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th {
+  text-align: left;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+td {
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.tab-bar {
+  display: flex;
+  gap: 0.3rem;
+  border-bottom: 1px solid var(--line-strong);
+  margin-bottom: 1.4rem;
+}
+
+.tab {
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  border: none;
+  background: none;
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  color: var(--accent-hard-ink);
+  border-bottom-color: var(--accent-hard);
+  font-weight: 500;
+}
+
+.inline-form {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+}
+
+.login-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Stundenplan-Grid */
+.grid-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.timetable {
+  display: grid;
+  gap: 1px;
+  background: var(--line-strong);
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.timetable-head,
+.time-label,
+.cell {
+  background: var(--surface);
+  padding: 0.55rem;
+}
+
+.timetable-head {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+.time-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  display: flex;
+  align-items: center;
+}
+
+.cell {
+  min-height: 4.2rem;
+  position: relative;
+  font-size: 0.82rem;
+}
+
+.cell.filled {
+  background: var(--accent-hard-bg);
+}
+
+.cell.pause {
+  background: var(--surface-2);
+}
+
+.cell-add {
+  width: 100%;
+  height: 100%;
+  min-height: 4.2rem;
+  border: 1px dashed var(--line-strong);
+  background: none;
+  color: var(--ink-faint);
+  border-radius: 3px;
+  font-size: 1.1rem;
+}
+
+.cell-add:hover {
+  border-color: var(--accent-hard);
+  color: var(--accent-hard);
+}
+
+.cell-entry b {
+  display: block;
+  font-size: 0.85rem;
+}
+
+.cell-entry span {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+}
+
+.conflict-box {
+  background: var(--danger-bg);
+  border: 1px solid var(--danger);
+  border-radius: 3px;
+  padding: 0.5rem 0.6rem;
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--danger);
+}
+
+.conflict-box .regel {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  margin-right: 0.3rem;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(29, 42, 34, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal {
+  background: var(--surface);
+  border-radius: 5px;
+  padding: 1.4rem 1.5rem;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}

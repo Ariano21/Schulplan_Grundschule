@@ -22,7 +22,7 @@ from app.schemas import (
 router = APIRouter(tags=["grunddaten"])
 
 
-def _register_crud(path: str, model, create_schema, out_schema, *, schule_scoped: bool = True):
+def _register_crud(path: str, model, create_schema, out_schema, *, schule_scoped: bool = True, after_create=None):
     """Registriert Create/List/Delete für eine Grunddaten-Ressource.
 
     Schreibzugriff (POST/DELETE) verlangt Schulleitung + editierbare Grunddaten
@@ -41,6 +41,9 @@ def _register_crud(path: str, model, create_schema, out_schema, *, schule_scoped
             data["schule_id"] = user.schule_id
         obj = model(**data)
         db.add(obj)
+        db.flush()
+        if after_create is not None:
+            after_create(db, obj)
         db.commit()
         db.refresh(obj)
         return obj
@@ -65,7 +68,14 @@ def _register_crud(path: str, model, create_schema, out_schema, *, schule_scoped
         db.commit()
 
 
-_register_crud("/klassen", Klasse, KlasseCreate, KlasseOut)
+def _standardgruppe_anlegen(db: Session, klasse: Klasse) -> None:
+    """Jede Klasse bekommt eine Standardgruppe, die die ganze Klasse repräsentiert
+    (Architektur-Dokument: unterrichtseinheiten referenziert immer eine Gruppe,
+    nie wahlweise Klasse oder Gruppe)."""
+    db.add(Gruppe(klasse_id=klasse.id, bezeichnung=klasse.bezeichnung, fach_id=None))
+
+
+_register_crud("/klassen", Klasse, KlasseCreate, KlasseOut, after_create=_standardgruppe_anlegen)
 _register_crud("/lehrer", Lehrer, LehrerCreate, LehrerOut)
 _register_crud("/faecher", Fach, FachCreate, FachOut)
 _register_crud("/raeume", Raum, RaumCreate, RaumOut)
